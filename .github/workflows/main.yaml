@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.13
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_build_args: |
+            PSQL_USER
+            PSQL_PASSWORD
+            PSQL_HOST
+            PSQL_DATABASE
+        env:
+          PSQL_USER: ${{secrets.PSQL_USER}}
+          PSQL_PASSWORD: ${{secrets.PSQL_PASSWORD}}
+          PSQL_HOST: ${{secrets.PSQL_HOST}}
+          PSQL_DATABASE: ${{secrets.PSQL_DATABASE}}

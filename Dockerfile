@@ -1,0 +1,28 @@
+FROM node:alpine3.16
+
+RUN mkdir -p /usr/src/app
+
+WORKDIR /usr/src/app
+
+COPY package.json /usr/src/app/
+
+RUN yarn
+
+COPY . /usr/src/app
+
+RUN yarn build
+
+ARG PSQL_HOST
+ENV COMMIT_SHA=$PSQL_HOST
+
+ARG PSQL_USER
+ENV COMMIT_SHA=$PSQL_USER
+
+ARG PSQL_PASSWORD
+ENV COMMIT_SHA=$PSQL_PASSWORD
+
+ARG PSQL_DATABASE
+ENV COMMIT_SHA=$PSQL_DATABASE
+
+EXPOSE 8080
+CMD ["yarn", "start"]
