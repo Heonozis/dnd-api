@@ -16,13 +16,3 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
-          docker_build_args: |
-            PSQL_USER
-            PSQL_PASSWORD
-            PSQL_HOST
-            PSQL_DATABASE
-        env:
-          PSQL_USER: ${{secrets.PSQL_USER}}
-          PSQL_PASSWORD: ${{secrets.PSQL_PASSWORD}}
-          PSQL_HOST: ${{secrets.PSQL_HOST}}
-          PSQL_DATABASE: ${{secrets.PSQL_DATABASE}}
