@@ -30,4 +30,4 @@ app.use(bodyParser());
 app.use(characterRoutes.routes());
 app.use(characterRoutes.allowedMethods());
 
-app.listen(8080);
+app.listen(process.env.PORT || 8080);
